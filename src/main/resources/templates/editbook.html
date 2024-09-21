@@ -6,7 +6,7 @@
 </head>
 <body>
     <h3>Edit Book</h3>
-    <form th:object="${book}" th:action="@{/saveEdit/{id}(id=${book.id})}" action="#" method="post">
+    <form th:object="${book}" th:action="@{../save}" action="#" method="post">
     <label for="title">Title</Label>
     <input type="text" id="title" th:field="*{title}" />
     <label for="author">Author</Label>
@@ -15,6 +15,10 @@
     <input type="text" id="isbn" th:field="*{isbn}" />
     <label for="price">Price</Label>
     <input type="text" id="price" th:field="*{price}" />
+    <label>Category</label>
+    <select id="catlist" th:field="*{bookcategory}" class="form-control">
+        <option th:each="bookcategory: ${bookcategories}" th:value="${bookcategory.categoryid}" th:text="${bookcategory.name}"></option>
+    </select>
     <label for="year">Year</Label>
     <input type="number" id="year" th:field="*{publishYear}" />
     

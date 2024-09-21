@@ -1,9 +1,6 @@
 package fi.haagahelia.bookstore.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Book {
@@ -13,14 +10,20 @@ public class Book {
     private String title, author, isbn, price;
     private Integer publishYear;
 
+    @ManyToOne
+    @JoinColumn(name = "categoryid")
+    private Bookcategory bookcategory;
+
     public Book() {}
 
-    public Book(String title, String author, String isbn, String price, Integer publishYear) {
+    public Book(String title, String author, String isbn, String price, Integer publishYear, Bookcategory bookcategory) {
+        super();
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.price = price;
         this.publishYear = publishYear;
+        this.bookcategory = bookcategory;
     }
     public long getId() {
         return id;
@@ -57,6 +60,14 @@ public class Book {
     }
     public void setpublishYear(Integer publishYear) {
         this.publishYear = publishYear;
+    }
+
+    public Bookcategory getBookcategory() {
+        return bookcategory;
+    }
+
+    public void setBookcategory(Bookcategory bookcategory) {
+        this.bookcategory = bookcategory;
     }
 
     
