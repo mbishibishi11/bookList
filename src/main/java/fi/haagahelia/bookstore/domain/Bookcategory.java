@@ -2,6 +2,8 @@ package fi.haagahelia.bookstore.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -11,6 +13,7 @@ public class Bookcategory {
     private Long categoryid;
     private String name;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookcategory")
     private List<Book> books;
 
